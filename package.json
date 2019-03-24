@@ -10,10 +10,11 @@
   "author": "Evgheni Curdov",
   "license": "ISC",
   "devDependencies": {
-    "jasmine": "^3.0.0",
-    "request": "^2.83.0"
+    "jasmine": "^3.3.1",
+    "request": "^2.88.0"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "dotenv": "^5.0.1",
+    "express": "^4.16.4"
   }
 }
