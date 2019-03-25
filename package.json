@@ -15,7 +15,10 @@
   },
   "dependencies": {
     "dotenv": "^5.0.1",
-    "ejs": "^2.5.7",
-    "express": "^4.16.4"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.0"
   }
 }
