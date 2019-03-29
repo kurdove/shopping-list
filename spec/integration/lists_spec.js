@@ -115,4 +115,43 @@ describe("routes : lists", () => {
         });
    
     });
+
+    describe("GET /lists/:id/edit", () => {
+
+        it("should render a view with an edit list form", (done) => {
+            request.get(`${base}${this.list.id}/edit`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("Edit List");
+                expect(body).toContain("Test Shopping List");
+                done();
+            });
+        });
+   
+    });
+
+    describe("POST /lists/:id/update", () => {
+
+        it("should update the list with the given values", (done) => {
+           const options = {
+              url: `${base}${this.list.id}/update`,
+              form: {
+                title: "Trader Joe's list",
+                description: "List for the weekend party"
+              }
+            };
+            request.post(options,
+              (err, res, body) => {
+   
+              expect(err).toBeNull();
+              List.findOne({
+                where: { id: this.list.id }
+              })
+              .then((list) => {
+                expect(list.title).toBe("Trader Joe's list");
+                done();
+              });
+            });
+        });
+   
+      });
 });

@@ -47,5 +47,25 @@ module.exports = {
                 res.redirect(303, "/lists")
             }
         });
+    },
+
+    edit(req, res, next){
+        listQueries.getList(req.params.id, (err, list) => {
+            if(err || list == null){
+                res.redirect(404, "/");
+            } else {
+                res.render("lists/edit", {list});
+            }
+        });
+    },
+
+    update(req, res, next){
+        listQueries.updateList(req.params.id, req.body, (err, list) => {
+            if(err || list == null){
+                res.redirect(404, `/lists/${req.params.id}/edit`);
+            } else {
+                res.redirect(`/lists/${list.id}`);
+            }
+        });
     }
 }
