@@ -50,5 +50,16 @@ module.exports = {
                 res.redirect(`/lists/${req.params.listId}`);
             }
         });
+    },
+
+    purchased(req, res, next){
+        itemQueries.markPurchased(req.params.id, (err, item) => {
+            if(err || item == null){
+                console.log("Ooops purchased did not work");
+                res.redirect(404, `/lists/${req.params.listId}`);
+            } else {
+                res.redirect(`/lists/${req.params.listId}`);
+            }
+        });
     }
 }

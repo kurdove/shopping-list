@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     listId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    purchased: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, {});
   Item.associate = function(models) {

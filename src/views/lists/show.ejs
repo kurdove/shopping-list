@@ -23,8 +23,19 @@
             <ul class="list-group">
                 <% list.items.forEach((item) => { %>
                 <li class="list-group-item">
-                    <a href="/lists/<%= item.listId %>/items/<%= item.id %>/edit"> <%= item.title %> </a>
-                    <a href="#" class="btn btn-success btn-sm">Check</a>
+                    
+                    <% if(item.purchased == false) {%>
+                        <a href="/lists/<%= item.listId %>/items/<%= item.id %>/edit"> <%= item.title %> </a>
+                        <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/purchased" method="post">
+                            <button type="submit" class="btn btn-success btn-sm">Mark purchased</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/lists/<%= item.listId %>/items/<%= item.id %>/edit"> <strike><%= item.title %></strike> </a>
+                        <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/purchased" method="post">
+                            <button type="submit" class="btn btn-success btn-sm">Mark unpurchased</button>
+                        </form>
+                    <% } %>
+
                     <a href="/lists/<%= item.listId %>/items/<%= item.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
 
                     <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/destroy" method="post">
