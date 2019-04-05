@@ -52,5 +52,34 @@ module.exports = {
                 callback(err);
             });
         });
+    },
+
+    markPurchased(id, callback){
+        return Item.findByPk(id)
+        .then((item) => {
+            if(!item){
+                return callback("Item not found");
+            }
+
+            if(item.purchased == true){
+                item.update({purchased: false})
+                .then(() => {
+                    // console.log("Purchased is:",item.purchased);
+                    callback(null, item);
+                })
+                .catch((err) => {
+                    callback(err);
+                });
+            } else {
+                item.update({purchased: true})
+                .then(() => {
+                    // console.log("Purchased is:",item.purchased);
+                    callback(null, item);
+                })
+                .catch((err) => {
+                    callback(err);
+                });
+            }
+        });
     }
 }

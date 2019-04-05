@@ -23,7 +23,8 @@ describe("routes : items", () => {
                 Item.create({
                     title: "Snowball Fighting",
                     note: "So much snow!",
-                    listId: this.list.id
+                    listId: this.list.id,
+                    purchased: false
                 })
                 .then((item) => {
                     this.item = item;
@@ -57,7 +58,8 @@ describe("routes : items", () => {
                 url: `${base}/${this.list.id}/items/create`,
                 form: {
                     title: "Watching snow melt",
-                    note: "Without a doubt my favoriting things to do besides watching paint dry!"
+                    note: "Without a doubt my favoriting things to do besides watching paint dry!",
+                    purchased: false
                 }
             };
             request.post(options,
@@ -69,6 +71,8 @@ describe("routes : items", () => {
                     expect(item.title).toBe("Watching snow melt");
                     expect(item.note).toBe("Without a doubt my favoriting things to do besides watching paint dry!");
                     expect(item.listId).not.toBeNull();
+                    expect(item.purchased).not.toBeNull();
+                    expect(item.purchased).toBe(false);
                     done();
                 })
                 .catch((err) => {
@@ -147,6 +151,25 @@ describe("routes : items", () => {
             });
         });
    
+    });
+
+    describe("POST /lists/:listId/items/:id/purchased", () => {
+
+        it("should mark as purchsed the item with the associated ID", (done) => {
+            expect(this.item.id).toBe(1);
+    
+            request.post(`${base}/${this.list.id}/items/${this.item.id}/purchased`, (err, res, body) => {
+                Item.findByPk(1)
+                .then((item) => {
+                    expect(err).toBeNull();
+                    expect(item.purchased).toBe(true);
+                    done();
+                });
+                
+            });
+            
+        });
+        
     });
 
 });
