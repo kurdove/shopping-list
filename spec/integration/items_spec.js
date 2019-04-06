@@ -58,7 +58,7 @@ describe("routes : items", () => {
                 url: `${base}/${this.list.id}/items/create`,
                 form: {
                     title: "Watching snow melt",
-                    note: "Without a doubt my favoriting things to do besides watching paint dry!",
+                    note: "Organic snow :)",
                     purchased: false
                 }
             };
@@ -69,7 +69,7 @@ describe("routes : items", () => {
                 .then((item) => {
                     expect(item).not.toBeNull();
                     expect(item.title).toBe("Watching snow melt");
-                    expect(item.note).toBe("Without a doubt my favoriting things to do besides watching paint dry!");
+                    expect(item.note).toBe("Organic snow :)");
                     expect(item.listId).not.toBeNull();
                     expect(item.purchased).not.toBeNull();
                     expect(item.purchased).toBe(false);
@@ -79,6 +79,32 @@ describe("routes : items", () => {
                     console.log(err);
                     done();
                 });
+                }
+            );
+        });
+
+        it("should not create a new item that fails validations", (done) => {
+            const options = {
+                url: `${base}/${this.list.id}/items/create`,
+                form: {
+                    title: "a",
+                    note: "bhbfljcljblblbfsJLcjlsFvljz jehfblwehfbljwebf",
+                    purchased: false
+                }
+            };
+    
+            request.post(options,
+                (err, res, body) => {
+                    Item.findOne({where: {title: "a"}})
+                    .then((item) => {
+                        // console.log("Item:", item);
+                        expect(item).toBeNull();
+                        done();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        done();
+                    });
                 }
             );
         });
@@ -123,7 +149,7 @@ describe("routes : items", () => {
                 url: `${base}/${this.list.id}/items/${this.item.id}/update`,
                 form: {
                     title: "Snowman Building Competition",
-                    note: "I love watching them melt slowly."
+                    note: "I love watching"
                 }
             }, (err, res, body) => {
                 expect(res.statusCode).toBe(302);
@@ -135,15 +161,14 @@ describe("routes : items", () => {
             const options = {
                 url: `${base}/${this.list.id}/items/${this.item.id}/update`,
                 form: {
-                    title: "Snowman Building Competition"
+                    title: "Snowman Building Competition",
+                    note: "Test note"
                 }
             };
             request.post(options,
                 (err, res, body) => {
                 expect(err).toBeNull();
-                Item.findOne({
-                    where: {id: this.item.id}
-                })
+                Item.findOne({where: {id: this.item.id}})
                 .then((item) => {
                     expect(item.title).toBe("Snowman Building Competition");
                     done();
@@ -171,5 +196,8 @@ describe("routes : items", () => {
         });
         
     });
+
+
+    
 
 });
