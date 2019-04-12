@@ -1,24 +1,24 @@
 ## Shopping-list application
 
-###### About:
+**About:**
 This is a final project for my Web Developer certification, it’s a web-application that can be shared in real-time by multiple people to do shopping.
 
 I’ve found this project very handy while shopping for the groceries, clothes or other merchandise. Each person in the group has the same grocery list on their phone or other device where he/she is able to create, add, update, delete items or mark them as “purchased” in order to optimize shopping time.
 
-###### Built with:
+**Built with:**
 This App is built using JavaScript/Node.JS as back-end and HTML,CSS as front-end  technologies infused with variety of addons like Bootstrap, Express, Jasmine, Ejs, Bcrypt, Passport, Sequelize and more.
 
-###### Features:
+**Features:**
 Ability to create members groups, categorise shopping items, make shopping list private, add frequently purchased item and much more makes “Shopping-list” stand out from other similar projects.
 
-###### Installation:
+**Installation:**
 In order to enjoy demo version of the app simply follow this link https://kurdove-shoppinglist.herokuapp.com/
 Or if you want to play around with the code, pull the project from repository https://github.com/kurdove/shopping-list, make sure you have NodeJS and other dependencies (presented in package.json) installed.
 
-###### Contribution:
+**Contribution:**
 Contribution into the project, either small pieces of enhanced code or global application behavior strategy, much appreciated. You can also check the project progress here https://github.com/kurdove/shopping-list/projects/1 in order to track the work we’ve already done and the tickets we are going to complete to have our App shine.
 
-###### Problem and Solution:
+**Problem and Solution:**
 Now let’s add some lyrics here, below I’m explaining my thought process and technologies driving my decisions.
 
 The global task was to create a grocery list web-application that can be shared in real-time by multiple people. Imagine you have a 4-person family, and each of you has a smart-phone with the web application running. When you arrive at the grocery store, you split up to shop individually. This allows the groceries to be acquired in the fastest possible way. Each person has the same grocery list on their phone. When one of you checks a grocery item off the shared list, it updates on everyone else’s list, preventing anyone from purchasing duplicate items. Similarly, items added to the list on any phone update to the same list.
